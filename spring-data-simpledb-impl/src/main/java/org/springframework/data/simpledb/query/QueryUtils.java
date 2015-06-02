@@ -163,7 +163,7 @@ public final class QueryUtils {
 		String replacedQuery = null;
 		if (paramValue.getClass().isArray() && isInOperation(rawQuery, paramPlaceholder)) {
 			String replacedValue = createInOperatorStatement(paramValue);
-			replacedQuery = rawQuery.replaceFirst(paramPlaceholder, replacedValue);
+			replacedQuery = rawQuery.replaceFirst(paramPlaceholder, Matcher.quoteReplacement(replacedValue));
 		} else {
 			// handle LIKE queries & quoting together
 			String encodedValue = SimpleDBAttributeConverter.encode(paramValue);
@@ -185,7 +185,7 @@ public final class QueryUtils {
 				}
 				paramValueBuilder.append(SINGLE_QUOTE);
 				replacedQuery = rawQuery.replaceFirst(
-						namedParamBuilder.toString(), paramValueBuilder.toString());
+						namedParamBuilder.toString(), Matcher.quoteReplacement(paramValueBuilder.toString()));
 			}
 		}
 		

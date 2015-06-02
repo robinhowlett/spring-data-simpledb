@@ -2,13 +2,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.threepillar.labs</groupId>
+	<groupId>com.sportslabs.amp</groupId>
 	<artifactId>spring-data-simpledb-integration-tests</artifactId>
 
 	<parent>
-		<groupId>com.3pillarglobal.labs</groupId>
+		<groupId>com.sportslabs.amp</groupId>
 		<artifactId>spring-data-simpledb-sdk</artifactId>
-		<version>1.0.1</version>
+		<version>1.0.1.ANNOTATION</version>
 	</parent>
 
 	<name>Spring Data SimpleDB Integration Tests</name>
@@ -31,7 +31,7 @@
 		<dependency>
 			<groupId>com.3pillarglobal.labs</groupId>
 			<artifactId>spring-data-simpledb</artifactId>
-			<version>1.0.1</version>
+			<version>1.0.1.ANNOTATION</version>
 		</dependency>
 
 		<!--SPRING -->

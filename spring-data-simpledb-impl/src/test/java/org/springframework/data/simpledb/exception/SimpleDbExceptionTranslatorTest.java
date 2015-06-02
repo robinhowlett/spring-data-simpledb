@@ -1,17 +1,32 @@
 package org.springframework.data.simpledb.exception;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.hamcrest.core.StringContains;
 import org.junit.Test;
-import org.springframework.dao.*;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataAccessResourceFailureException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DataRetrievalFailureException;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
+import org.springframework.dao.InvalidDataAccessResourceUsageException;
 import org.springframework.data.mapping.model.MappingException;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.cloudwatch.model.ResourceNotFoundException;
-import com.amazonaws.services.simpledb.model.*;
+import com.amazonaws.services.simpledb.model.AttributeDoesNotExistException;
+import com.amazonaws.services.simpledb.model.DuplicateItemNameException;
+import com.amazonaws.services.simpledb.model.InvalidNextTokenException;
+import com.amazonaws.services.simpledb.model.InvalidParameterValueException;
+import com.amazonaws.services.simpledb.model.NoSuchDomainException;
+import com.amazonaws.services.simpledb.model.NumberDomainsExceededException;
 
 public class SimpleDbExceptionTranslatorTest {
 
@@ -38,7 +53,7 @@ public class SimpleDbExceptionTranslatorTest {
 		assertThat(dataAccessException, is(instanceOf(EmptyResultDataAccessException.class)));
 
 		assertThat(dataAccessException, is(notNullValue()));
-		assertThat(dataAccessException.getLocalizedMessage(), is("Attribute does not exist"));
+		assertThat(dataAccessException.getLocalizedMessage(), is("Attribute does not exist (Service: null; Status Code: 0; Error Code: null; Request ID: null)"));
 	}
 
 	@Test
@@ -62,7 +77,7 @@ public class SimpleDbExceptionTranslatorTest {
 		assertThat(dataAccessException, is(instanceOf(InvalidDataAccessResourceUsageException.class)));
 
 		assertThat(invalidParameterValueException, is(notNullValue()));
-		assertThat(invalidParameterValueException.getLocalizedMessage(), is("Invalid Parameter"));
+		assertThat(invalidParameterValueException.getLocalizedMessage(), is("Invalid Parameter (Service: null; Status Code: 0; Error Code: null; Request ID: null)"));
 
 	}
 
@@ -75,7 +90,7 @@ public class SimpleDbExceptionTranslatorTest {
 		assertThat(dataAccessException, is(instanceOf(EmptyResultDataAccessException.class)));
 
 		assertThat(dataAccessException, is(notNullValue()));
-		assertThat(dataAccessException.getLocalizedMessage(), is("No such domain"));
+		assertThat(dataAccessException.getLocalizedMessage(), is("No such domain (Service: null; Status Code: 0; Error Code: null; Request ID: null)"));
 
 	}
 

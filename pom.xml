@@ -8,14 +8,14 @@
 		<version>7</version>
 	</parent>
 
-	<groupId>com.3pillarglobal.labs</groupId>
+	<groupId>com.sportslabs.amp</groupId>
 	<artifactId>spring-data-simpledb-sdk</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.1.ANNOTATION</version>
 	<packaging>pom</packaging>
 	<name>Spring Data SimpleDB SDK</name>
 	<description>SDK bundle for Spring Data SimpleDB</description>
 	
-	<url>https://github.com/3pillarlabs/spring-data-simpledb</url>
+	<url>https://github.com/robinhowlett/spring-data-simpledb</url>
 
 	<licenses>
 		<license>
@@ -25,8 +25,8 @@
 	</licenses>
 
 	<scm>
-		<connection>git@github.com:3pillarlabs/spring-data-simpledb.git</connection>
-		<url>https://github.com/3pillarlabs/spring-data-simpledb</url>
+		<connection>git@github.com:robinhowlett/spring-data-simpledb.git</connection>
+		<url>https://github.com/robinhowlett/spring-data-simpledb</url>
 	</scm>
 
 	<developers>
@@ -38,9 +38,44 @@
 			<organization>3Pillar Global</organization>
 			<organizationUrl>http://www.3pillarglobal.com/</organizationUrl>
 		</developer>
+        <developer>
+            <id>robinhowlett</id>
+            <name>Robin Howlett</name>
+            <email>robin.howlett@gmail.com</email>
+            <url>http://www.robinhowlett.com/</url>
+            <organization>SportsLabs</organization>
+            <organizationUrl>http://www.sportslabs.com/</organizationUrl>
+        </developer>
 	</developers>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.compiler.version>1.7</java.compiler.version>
+    </properties>
+
+    <distributionManagement>
+        <site>
+            <id>s3.site</id>
+            <url>s3://maven.robinhowlett.com/site</url>
+        </site>
+        <repository>
+            <id>s3.release</id>
+            <url>s3://maven.robinhowlett.com/release</url>
+        </repository>
+        <snapshotRepository>
+            <id>s3.snapshot</id>
+            <url>s3://maven.robinhowlett.com/snapshot</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 	<build>
+        <extensions>
+            <extension>
+                <groupId>org.kuali.maven.wagons</groupId>
+                <artifactId>maven-s3-wagon</artifactId>
+                <version>1.2.1</version>
+            </extension>
+        </extensions>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -74,91 +109,13 @@
 				<artifactId>maven-deploy-plugin</artifactId>
 				<version>2.4</version>
 			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>2.10</version>
-				<executions>
-					<execution>
-						<phase>process-sources</phase>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<configLocation>etc/CheckstyleSonar.xml</configLocation>
-					<maxAllowedViolations>1</maxAllowedViolations>
-					<violationSeverity>info</violationSeverity>
-					<consoleOutput>true</consoleOutput>
-					<failsOnError>true</failsOnError>
-				</configuration>
-			</plugin>
-
-			<!-- FindBugs -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<!-- Uses FindBugs version 2.0.1 -->
-				<version>2.5.2</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<includeFilterFile>${basedir}/../etc/FindbugsSonar.xml</includeFilterFile>
-					<excludeFilterFile>${basedir}/../etc/FindbugsSonarExclude.xml</excludeFilterFile>
-					<effort>Max</effort>
-					<!-- High/Low -->
-					<threshold>Low</threshold>
-					<includeTests>false</includeTests>
-				</configuration>
-			</plugin>
-
-			<!--PMD -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<!-- Uses PMD version 4.3 -->
-				<version>2.7.1</version>
-				<executions>
-					<execution>
-						<phase>process-sources</phase>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<targetJdk>${java.compiler.version}</targetJdk>
-					<rulesets>
-						<ruleset>${basedir}/../etc/PMDSonar.xml</ruleset>
-					</rulesets>
-					<failurePriority>3</failurePriority>
-					<verbose>true</verbose>
-					<includeTests>false</includeTests>
-					<excludes>
-						<exclude>**\org\springframework\data\simpledb\parser\*.*</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 
 	<modules>
 		<module>spring-data-simpledb-impl</module>
 		<module>spring-data-simpledb-parser</module>
-		<module>spring-data-simpledb-integration-tests</module>
+		<!--<module>spring-data-simpledb-integration-tests</module>-->
 	</modules>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.compiler.version>1.6</java.compiler.version>
-	</properties>
-
 
 </project>

@@ -9,9 +9,9 @@
 	<description>Provides a parser for Amazon SimpleDb SQL</description>
 
 	<parent>
-		<groupId>com.3pillarglobal.labs</groupId>
+		<groupId>com.sportslabs.amp</groupId>
 		<artifactId>spring-data-simpledb-sdk</artifactId>
-		<version>1.0.1</version>
+		<version>1.0.1.ANNOTATION</version>
 	</parent>
 
 	<build>

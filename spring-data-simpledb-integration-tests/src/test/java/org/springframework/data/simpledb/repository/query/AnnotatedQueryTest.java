@@ -1,5 +1,12 @@
 package org.springframework.data.simpledb.repository.query;
 
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import java.util.List;
+import java.util.Set;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -9,17 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.simpledb.domain.JSONCompatibleClass;
 import org.springframework.data.simpledb.domain.SimpleDbUser;
 import org.springframework.data.simpledb.exception.InvalidSimpleDBQueryException;
-import org.springframework.data.simpledb.repository.query.AnnotatedQueryRepository;
 import org.springframework.data.simpledb.repository.util.SimpleDbUserBuilder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.List;
-import java.util.Set;
-
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:simpledb-consistent-repository-context.xml")
